@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h2>Add Website</h2>
+            <h2>Update Website #{{$website->id}}</h2>
 
             @if(session('error')!='')
                 <div class="alert alert-danger">
@@ -30,15 +30,17 @@
 
             @endif
 
-            <form method="post" action="{{ route('websites.store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('websites.update', [$website]) }}" enctype="multipart/form-data">
                 @csrf
+                @method("PUT")
+
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6">
                         <div class="form-group">
 
                             <strong>Title:</strong>
 
-                            <input type="text" name="title" class="form-control" />
+                            <input type="text" name="title" value="{{ $website->title }}" class="form-control" />
                         </div>
                     </div>
                 </div>
@@ -49,13 +51,16 @@
 
                             <strong>Url:</strong>
 
-                            <input type="text" name="url" class="form-control" />
+                            <input type="text" name="url" value="{{ $website->url }}" class="form-control" />
 
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
+                    @if($website->logo != "")
+                        <img src="{{ url('uploads/' . $website->logo) }}" width="150" />
+                    @endif
                     <div class="col-xs-12 col-sm-12 col-md-6">
                         <div class="form-group">
 
@@ -68,7 +73,7 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
-                    <button type="submit" class="btn btn-primary" id="btn-save">Create</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save">Update</button>
 
                 </div>
 

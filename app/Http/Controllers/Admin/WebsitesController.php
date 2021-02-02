@@ -52,17 +52,6 @@ class WebsitesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  Website  $website
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Website $website)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  Website  $website
@@ -70,7 +59,7 @@ class WebsitesController extends Controller
      */
     public function edit(Website $website)
     {
-        //
+        return view('dashboard.website.edit')->withWebsite($website);
     }
 
     /**
@@ -82,7 +71,18 @@ class WebsitesController extends Controller
      */
     public function update(Request $request, Website $website)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'url' => 'required'
+        ]);
+
+        $website->title = $request->input('title');
+        $website->url = $request->input('url');
+        if ($request->hasFile('logo')) {
+            $website->logo = $this->uploadFile('logo', 'public/website/uploads', $request)["filename"];
+        }
+        $website->save();
+        return redirect()->route('websites.index');
     }
 
     /**

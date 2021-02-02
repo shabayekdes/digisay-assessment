@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'dashboard'], function () {
+
+    Route::resource('/websites', 'Admin\WebsitesController');
+    Route::resource('/links', 'Admin\LinksController');
+    Route::resource('/item-schema', 'Admin\ItemSchemaController');
+    Route::resource('/articles', 'Admin\ArticlesController');
+});
