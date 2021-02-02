@@ -21,12 +21,12 @@ class CreateLinksTable extends Migration
             $table->unsignedBigInteger('item_schema_id')->nullable();
             $table->foreign('website_id')
                 ->references('id')
-                ->on('website')
+                ->on('websites')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
             $table->foreign('item_schema_id')
                 ->references('id')
-                ->on('item_schema')
+                ->on('item_schemas')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
             $table->timestamps();

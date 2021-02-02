@@ -23,7 +23,7 @@ class CreateArticlesTable extends Migration
             $table->unsignedBigInteger('website_id')->nullable();
             $table->foreign('website_id')
                 ->references('id')
-                ->on('website')
+                ->on('websites')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
             $table->timestamps();
