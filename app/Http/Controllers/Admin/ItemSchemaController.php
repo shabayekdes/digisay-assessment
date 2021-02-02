@@ -27,7 +27,7 @@ class ItemSchemaController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.item_schema.create');
     }
 
     /**
@@ -38,27 +38,31 @@ class ItemSchemaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'css_expression' => 'required',
+            'full_content_selector' => 'required'
+        ]);
+        $itemSchema = new ItemSchema();
+        $itemSchema->title = $request->get('title');
+        if ($request->has('is_full_url')) {
+            $itemSchema->is_full_url = 1;
+        } else {
+            $itemSchema->is_full_url = 0;
+        }
+        $itemSchema->css_expression = $request->get('css_expression');
+        $itemSchema->full_content_selector = $request->get('full_content_selector');
+        $itemSchema->save();
+        return redirect()->route('item-schema.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  ItemSchema  $itemSchema
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($itemSchema)
     {
         //
     }
@@ -67,10 +71,10 @@ class ItemSchemaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  ItemSchema  $itemSchema
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $itemSchema)
     {
         //
     }
@@ -78,10 +82,10 @@ class ItemSchemaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  ItemSchema  $itemSchema
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($itemSchema)
     {
         //
     }
