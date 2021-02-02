@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Goutte\Client as GoutteClient;
 use App\Classes\WebScraper;
 
-class FacadeServicerProvider extends ServiceProvider
+class FacadeServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
