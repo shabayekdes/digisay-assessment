@@ -17,7 +17,6 @@
                         <td>Url</td>
                         <td>Main Filter Selector</td>
                         <td>Website</td>
-                        <td>Assigned To Category</td>
                         <td><strong>Item Schema</strong></td>
                         <td><strong>Scrape Link</strong></td>
                         <td>Actions</td>
@@ -27,7 +26,6 @@
                             <td>{{ $link->url }}</td>
                             <td>{{ $link->main_filter_selector }}</td>
                             <td>{{ $link->website->title }} </td>
-                            <td><strong><span class="label label-info">{{ $link->category->title }}</span></strong> </td>
                             <td>
                                 <select class="item_schema" data-id="{{ $link->id }}" data-original-schema="{{$link->item_schema_id}}">
                                     <option value="" disabled selected>Select</option>

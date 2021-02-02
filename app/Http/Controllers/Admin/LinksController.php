@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Link;
+use App\Models\Website;
 use App\Models\ItemSchema;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,7 +30,9 @@ class LinksController extends Controller
      */
     public function create()
     {
-        //
+        $websites = Website::all();
+
+        return view('dashboard.link.create')->withWebsites($websites);
     }
 
     /**
@@ -40,50 +43,61 @@ class LinksController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            'url' => 'required',
+            'main_filter_selector' => 'required',
+            'website_id' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $link = new Link();
+        $link->url = $request->get('url');
+        $link->main_filter_selector = $request->get('main_filter_selector');
+        $link->website_id = $request->get('website_id');
+        $link->save();
+        return redirect()->route('links.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Link  $link
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Link $link)
     {
-        //
+        $websites = Website::all();
+        return view('dashboard.link.edit')->withLink($link)->withWebsites($websites);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Link  $link
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Link $link)
     {
-        //
+        $this->validate($request, [
+            'url' => 'required',
+            'main_filter_selector' => 'required',
+            'website_id' => 'required'
+        ]);
+
+        $link->url = $request->get('url');
+        $link->main_filter_selector = $request->get('main_filter_selector');
+        $link->website_id = $request->get('website_id');
+        $link->save();
+        return redirect()->route('links.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Link  $link
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Link $link)
     {
         //
     }
