@@ -17,7 +17,8 @@ class Controller extends BaseController
             $image = $request->file($name);
             $fileName = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs($destination, $fileName);
-            return ["state" => 1, "filename" => $fileName];
+
+            return ["state" => 1, "filename" => '/storage/website/uploads/' . $fileName];
         } catch (\Exception $ex) {
             return ["state" => 0, "filename" => ""];
         }
