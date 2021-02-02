@@ -27,7 +27,7 @@ class WebsitesController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.website.create');
     }
 
     /**
@@ -38,7 +38,17 @@ class WebsitesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'url' => 'required',
+            'logo' => 'required'
+        ]);
+        $website = new Website();
+        $website->title = $request->get('title');
+        $website->url = $request->get('url');
+        $website->logo = $this->uploadFile('logo', 'public/website/uploads', $request)["filename"];
+        $website->save();
+        return redirect()->route('websites.index');
     }
 
     /**

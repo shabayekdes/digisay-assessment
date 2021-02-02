@@ -20,7 +20,7 @@
                     @foreach($websites as $website)
                         <tr>
                             <td>{{ $website->title }}</td>
-                            <td><img width="150" src="{{ url('uploads/' . $website->logo) }}" /></td>
+                            <td><img width="150" src="{{ url('storage/website/uploads/' . $website->logo) }}" /></td>
                             <td><a href="{{ $website->url }}">{{ $website->url }}</a> </td>
                             <td>
                                 <a href="{{ url('dashboard/websites/' . $website->id . '/edit') }}"><i class="glyphicon glyphicon-edit"></i> </a>
