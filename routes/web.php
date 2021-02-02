@@ -25,6 +25,9 @@ Route::get('/test', 'TestController');
 
 Route::group(['prefix' => 'dashboard'], function () {
 
+    Route::patch('/links/set-item-schema', 'Admin\LinksController@setItemSchema');
+    Route::post('/links/scrape', 'Admin\LinksController@scrape');
+
     Route::resource('/websites', 'Admin\WebsitesController');
     Route::resource('/links', 'Admin\LinksController');
     Route::resource('/item-schema', 'Admin\ItemSchemaController');

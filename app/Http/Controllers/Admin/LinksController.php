@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Link;
 use App\Models\Website;
+use App\Facades\Scraper;
 use App\Models\ItemSchema;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -100,5 +101,49 @@ class LinksController extends Controller
     public function destroy(Link $link)
     {
         //
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function setItemSchema(Request $request)
+    {
+
+        if (!$request->item_schema_id && !$request->link_id) {
+            return;
+        }
+
+        $link = Link::find($request->link_id);
+
+        $link->item_schema_id = $request->item_schema_id;
+        $link->save();
+
+        return response()->json(['msg' => 'Link updated!']);
+    }
+
+    /**
+     * scrape specific link
+     *
+     * @param Request $request
+     */
+    public function scrape(Request $request)
+    {
+        if (!$request->link_id) {
+            return;
+        }
+
+        $link = Link::find($request->link_id);
+
+        if (empty($link->main_filter_selector) && (empty($link->item_schema_id) || $link->item_schema_id == 0)) {
+            return;
+        }
+ 
+        $scraper = Scraper::handle($link);
+
+        if ($scraper->status == 1) {
+            return response()->json(['status' => 1, 'msg' => 'Scraping done']);
+        } else {
+            return response()->json(['status' => 2, 'msg' => $scraper->status]);
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Scraper;
 use Illuminate\Http\Request;
 use Goutte\Client as GoutteClient;
 use Symfony\Component\DomCrawler\Crawler;
@@ -18,24 +19,24 @@ class TestController extends Controller
     public function __invoke(Request $request)
     {
 
-        $test = Scraper::handle("https://www.mklat.com/category/technology/computer-internet/")
+        $test = Scraper::handle("https://www.mklat.com/category/technology/computer-internet/");
         try {
             $this->client = new GoutteClient();
 
             $crawler = $this->client->request('GET', "https://www.mklat.com/category/technology/computer-internet/");
 
 
-            $crawler->filter(".pages-numbers > li")->each(function ($node) {
-                dd($node->text());
+            // $crawler->filter(".pages-numbers > li")->each(function ($node) {
+            //     dd($node->text());
 
-                $divs = $node->children()->filter('div');
-                $info = $divs->eq(0);
-                $title = $info->filter("[class='post-title']")->first();
-                dd($title->html());
+            //     $divs = $node->children()->filter('div');
+            //     $info = $divs->eq(0);
+            //     $title = $info->filter("[class='post-title']")->first();
+            //     dd($title->html());
 
-                $title = $node->filter('a')->first();
+            //     $title = $node->filter('a')->first();
 
-            });
+            // });
 
             // dd($crawler);
 
@@ -51,6 +52,7 @@ class TestController extends Controller
                 $crawler->filter(".mag-box-container .post-item")->each(function ($node) use ($translateExpre, &$data, $linkObj) {
                     // using the $node var we can access sub elements deep the tree
 
+                    dd($node);
                     foreach ($translateExpre as $key => $val) {
 
                         if ($node->filter($val['selector'])->count() > 0) {

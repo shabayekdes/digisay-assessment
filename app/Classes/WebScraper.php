@@ -62,8 +62,7 @@ class WebScraper
                 $crawler->filter($linkObj->main_filter_selector)->each(function ($node) use ($translateExpre, &$data, $linkObj) {
 
                     // using the $node var we can access sub elements deep the tree
-
-                    foreach ($translateExpre as $key => $val) {
+                    foreach ($translateExpre as $key => $val) { 
                         if ($node->filter($val['selector'])->count() > 0) {
                             if ($val['is_attribute'] == false) {
                                 $data[$key][] = preg_replace("#\n|'|\"#", '', $node->filter($val['selector'])->text());
@@ -87,14 +86,13 @@ class WebScraper
 
                     $data['website_id'][] = $linkObj->website->id;
                 });
-                //dd($data);
                 $this->save($data);
-
                 $this->results = $data;
             }
         } catch (\Exception $ex) {
             $this->status = $ex->getMessage();
         }
+        return $this;
     }
 
 
