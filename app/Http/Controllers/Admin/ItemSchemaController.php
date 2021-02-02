@@ -27,7 +27,9 @@ class ItemSchemaController extends Controller
      */
     public function create()
     {
-        return view('dashboard.item_schema.create');
+        $itemSchema = new ItemSchema();
+
+        return view('dashboard.item_schema.create')->withItemSchema($itemSchema);
     }
 
     /**
