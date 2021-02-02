@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(WebsiteTableSeeder::class);
         $this->call(ItemSchemaTableSeeder::class);
+        $this->call(LinksTableSeeder::class);
     }
 }

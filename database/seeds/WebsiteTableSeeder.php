@@ -14,13 +14,13 @@ class WebsiteTableSeeder extends Seeder
     {
         Website::create([
             'title' => 'Mklat',
-            'url' => 'https://www.mklat.com/category/technology/computer-internet/',
+            'url' => 'https://www.mklat.com/',
             'logo' => '/images/Mklat-Logo-1.png'
         ]);
 
         Website::create([
             'title' => 'Arab Media Society',
-            'url' => 'https://www.arabmediasociety.com/category/features/',
+            'url' => 'https://www.arabmediasociety.com/',
             'logo' => '/images/AMS_logoN.png'
         ]);
     }
