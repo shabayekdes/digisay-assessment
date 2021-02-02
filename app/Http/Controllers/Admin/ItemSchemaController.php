@@ -62,9 +62,9 @@ class ItemSchemaController extends Controller
      * @param  ItemSchema  $itemSchema
      * @return \Illuminate\Http\Response
      */
-    public function edit($itemSchema)
+    public function edit(ItemSchema $itemSchema)
     {
-        //
+        return view('dashboard.item_schema.edit')->withItemSchema($itemSchema);
     }
 
     /**
@@ -74,9 +74,25 @@ class ItemSchemaController extends Controller
      * @param  ItemSchema  $itemSchema
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $itemSchema)
+    public function update(Request $request, ItemSchema $itemSchema)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'css_expression' => 'required',
+            'full_content_selector' => 'required'
+        ]);
+
+        $itemSchema->title = $request->get('title');
+        if ($request->has('is_full_url')) {
+            $itemSchema->is_full_url = 1;
+        } else {
+            $itemSchema->is_full_url = 0;
+        }
+        $itemSchema->css_expression = $request->get('css_expression');
+        $itemSchema->full_content_selector = $request->get('full_content_selector');
+        $itemSchema->save();
+
+        return redirect()->route('item-schema.index');
     }
 
     /**
@@ -85,7 +101,7 @@ class ItemSchemaController extends Controller
      * @param  ItemSchema  $itemSchema
      * @return \Illuminate\Http\Response
      */
-    public function destroy($itemSchema)
+    public function destroy(ItemSchema $itemSchema)
     {
         //
     }
