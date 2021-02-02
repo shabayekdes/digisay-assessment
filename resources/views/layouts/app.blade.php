@@ -72,8 +72,17 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                        <li class="nav-header">EXAMPLES</li>
-                        <li class="nav-item menu-open">
+                        <li class="nav-header">Dashboard</li>
+                        <li class="nav-item ">
+                            <a href="{{ route('articles.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Articles
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-header">Management</li>
+                        <li class="nav-item">
                             <a href="{{ route('websites.index') }}" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>

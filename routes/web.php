@@ -18,18 +18,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', 'TestController');
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group([
+    'prefix' => 'dashboard',
+    'middleware' => 'auth'
+    ], function () {
 
-    Route::patch('/links/set-item-schema', 'Admin\LinksController@setItemSchema');
-    Route::post('/links/scrape', 'Admin\LinksController@scrape');
+        Route::patch('/links/set-item-schema', 'Admin\LinksController@setItemSchema');
+        Route::post('/links/scrape', 'Admin\LinksController@scrape');
 
-    Route::resource('/websites', 'Admin\WebsitesController');
-    Route::resource('/links', 'Admin\LinksController');
-    Route::resource('/item-schema', 'Admin\ItemSchemaController');
-    Route::resource('/articles', 'Admin\ArticlesController');
+        Route::resource('/websites', 'Admin\WebsitesController');
+        Route::resource('/links', 'Admin\LinksController');
+        Route::resource('/item-schema', 'Admin\ItemSchemaController');
+        Route::resource('/articles', 'Admin\ArticlesController');
 });
