@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        App\Providers\FacadeServiceProvider::class,
 
         /*
          * Application Service Providers...
