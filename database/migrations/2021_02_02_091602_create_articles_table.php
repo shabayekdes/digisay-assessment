@@ -21,11 +21,6 @@ class CreateArticlesTable extends Migration
             $table->string('image')->nullable();
             $table->string('source_link', 355)->nullable();
             $table->unsignedBigInteger('website_id')->nullable();
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('category')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
             $table->foreign('website_id')
                 ->references('id')
                 ->on('website')
