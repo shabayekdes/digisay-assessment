@@ -44,9 +44,9 @@
                         </div>
                     @endif
                     <form method="post" action="{{ route('websites.store') }}" enctype="multipart/form-data">
-                        @csrf
 
                         @include('dashboard.website.form')
+                        
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <button type="submit" class="btn btn-primary" id="btn-save">Create</button>
                         </div>

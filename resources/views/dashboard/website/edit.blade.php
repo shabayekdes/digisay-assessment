@@ -44,7 +44,6 @@
                         </div>
                     @endif
                     <form method="post" action="{{ route('websites.update', [$website]) }}" enctype="multipart/form-data">
-                        @csrf
                         @method("PUT")
         
                         @include('dashboard.website.form')

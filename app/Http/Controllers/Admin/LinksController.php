@@ -32,8 +32,9 @@ class LinksController extends Controller
     public function create()
     {
         $websites = Website::all();
+        $link = new Link();
 
-        return view('dashboard.link.create')->withWebsites($websites);
+        return view('dashboard.link.create')->withWebsites($websites)->withLink($link);
     }
 
     /**
