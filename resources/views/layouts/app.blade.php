@@ -74,7 +74,7 @@
                with font-awesome or any other icon font library -->
                         <li class="nav-header">EXAMPLES</li>
                         <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
+                            <a href="{{ route('websites.index') }}" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Websites

@@ -43,7 +43,7 @@
                                     <td><img width="150" src="{{ url($website->logo) }}" /></td>
                                     <td><a href="{{ $website->url }}">{{ $website->url }}</a> </td>
                                     <td>
-                                        <a href="{{ url('dashboard/websites/' . $website->id . '/edit') }}"><i class="glyphicon glyphicon-edit"></i> </a>
+                                        <a href="{{ url('dashboard/websites/' . $website->id . '/edit') }}"><i class="fas fa-edit"></i> </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -66,7 +66,4 @@
     </section>
     <!-- /.content -->
 </div>
-
-
-
 @endsection

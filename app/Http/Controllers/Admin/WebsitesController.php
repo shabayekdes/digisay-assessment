@@ -27,7 +27,9 @@ class WebsitesController extends Controller
      */
     public function create()
     {
-        return view('dashboard.website.create');
+        $website = new Website();
+
+        return view('dashboard.website.create')->withWebsite($website);
     }
 
     /**
