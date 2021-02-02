@@ -68,7 +68,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboard <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/dashboard/websites">Websites</a></li>
-                                    <li><a href="#">Links</a></li>
+                                    <li><a href="/dashboard/links">Links</a></li>
                                     <li><a href="/dashboard/item-schema">Item Schema</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#">Articles</a></li>
