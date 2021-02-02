@@ -21,7 +21,7 @@ class ItemSchemaTableSeeder extends Seeder
 
         ItemSchema::create([
             'title' => 'Arab Media Society Schema',
-            'css_expression' => 'title[h2.post-box-title]||excerpt[.entry > p]||image[img.wp-post-image[src]]||source_link[.post-box-title a[href]]',
+            'css_expression' => 'title[h2.post-box-title]||excerpt[.entry > p]||image[img.wp-post-image[data-lazy-src]]||source_link[.post-box-title a[href]]',
             'full_content_selector' => '.entry',
             'is_full_url' => true
         ]);
