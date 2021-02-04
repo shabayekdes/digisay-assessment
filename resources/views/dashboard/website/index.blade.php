@@ -35,13 +35,25 @@
                                 <td>Title</td>
                                 <td>Logo</td>
                                 <td>Url</td>
+                                <td>Last Scrape At</td>
+                                <td>Created At</td>
                                 <td>Actions</td>
                             </tr>
                             @foreach($websites as $website)
                                 <tr>
                                     <td>{{ $website->title }}</td>
-                                    <td><img width="150" src="{{ url($website->logo) }}" /></td>
-                                    <td><a href="{{ $website->url }}">{{ $website->url }}</a> </td>
+                                    @if ($website->logo != null)
+                                        <td><img width="150" src="{{ url($website->logo) }}" /></td>
+                                    @else
+                                        <td>No Logo</td>
+                                    @endif
+                                    <td><a href="{{ $website->url }}">Click here</a> </td>
+                                    @if ($website->last_scrape_at != null)
+                                    <td>{{ $website->last_scrape_at->diffForHumans() }}</td>
+                                    @else
+                                        <td>Not Scrape yet</td>
+                                    @endif
+                                    <td>{{ $website->created_at->diffForHumans() }}</td>
                                     <td>
                                         <a href="{{ url('dashboard/websites/' . $website->id . '/edit') }}"><i class="fas fa-edit"></i> </a>
                                     </td>
