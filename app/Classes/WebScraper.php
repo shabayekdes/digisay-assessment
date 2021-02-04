@@ -3,6 +3,7 @@
 namespace App\Classes;
 
 use App\Models\Article;
+use App\Models\Website;
 use Goutte\Client as GoutteClient;
 
 /**
@@ -126,7 +127,7 @@ class WebScraper
                 $article = new Article();
 
                 $article->title = $val;
-                $article->excerpt = isset($data['excerpt'][$k]) ? $data['excerpt'][$k] : "";
+                $article->excerpt = isset($data['excerpt'][$k]) ? mb_convert_encoding($data['excerpt'][$k], "UTF-8", "auto") : "";
                 $article->content = isset($data['content'][$k]) ? $data['content'][$k] : "";
                 $article->image = isset($data['image'][$k]) ? $data['image'][$k] : "";
                 $article->source_link = $data['source_link'][$k];
@@ -134,12 +135,16 @@ class WebScraper
 
                 $article->save();
 
+                Website::where('id', $data['website_id'][$k])->update([
+                    'last_scrape_at' => now(),
+                ]);
+
                 $this->savedItems++;
             }
         }
     }
 
-
+    
     /**
      * translateCSSExpression
      *
