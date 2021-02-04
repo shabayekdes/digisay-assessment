@@ -43,12 +43,14 @@ class WebsitesController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'url' => 'required',
-            'logo' => 'required'
+            'logo' => 'nullable|image'
         ]);
         $website = new Website();
         $website->title = $request->get('title');
         $website->url = $request->get('url');
-        $website->logo = $this->uploadFile('logo', 'public/website/uploads', $request)["filename"];
+        if ($request->hasFile('logo')){
+            $website->logo = $this->uploadFile('logo', 'public/website/uploads', $request)["filename"];
+        }
         $website->save();
         return redirect()->route('websites.index');
     }
