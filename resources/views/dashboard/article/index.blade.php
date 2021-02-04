@@ -35,6 +35,7 @@
                             <td>Image</td>
                             <td>Title</td>
                             <td>Excerpt</td>
+                            <td>Created At</td>
                             <td>Source</td>
                             <td>Actions</td>
                         </tr>
@@ -47,11 +48,13 @@
                             @endif
                             <td>{{ $article->title }}</td>
                             <td>{{ $article->excerpt }}</td>
+                            <td>{{ $article->created_at->diffForHumans() }}</td>
                             <td><em>Source: </em><a class="label label-danger" href="{{ $article->source_link }}"
                                 target="_blank">{{ $article->website->title }}</a></td>
+                            
                             <td>
                                 <a class="btn btn-warning pull-right"
-                                href="{{ url('article-details/' . $article->id) }}">READ MORE</a>
+                                href="{{ url('dashboard/articles/' . $article->id) }}">READ MORE</a>
                             </td>
                         </tr>
                         @endforeach

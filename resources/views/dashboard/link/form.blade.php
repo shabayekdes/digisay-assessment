@@ -12,6 +12,7 @@
         <div class="form-group">
             <strong>Main Filter Selector:</strong>
             <input type="text" name="main_filter_selector" class="form-control" value="{{ old('url') ?? $link->main_filter_selector }}" />
+            <small id="emailHelp" class="form-text text-muted">Main css selector of list news content</small>
         </div>
     </div>
 </div>

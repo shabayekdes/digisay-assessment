@@ -27,7 +27,8 @@
             <!-- Main row -->
             <div class="row">
                 <div class="col-md-12">
-    
+                    <div class="alert alert-success" style="display: none"></div>
+
                     @if(count($links) > 0)
 
                     <table class="table table-bordered">

@@ -12,6 +12,7 @@
         <div class="form-group">
             <strong>CSS Expression:</strong>
             <input type="text" name="css_expression" class="form-control" value="{{ old('css_expression') ?? $itemSchema->css_expression }}" />
+            <small id="emailHelp" class="form-text text-muted">title[css selector1]||excerpt[css selector2]||image[css selector3[src]]||source_link[css selector4 a[href]]</small>
         </div>
     </div>
 </div>
@@ -30,6 +31,8 @@
         <div class="form-group">
             <strong>Full content selector:</strong>
             <input type="text" name="full_content_selector" class="form-control" value="{{ old('full_content_selector') ?? $itemSchema->full_content_selector }}" />
+            <small id="emailHelp" class="form-text text-muted">the css selector of full content from news details page</small>
+
         </div>
     </div>
 </div>
